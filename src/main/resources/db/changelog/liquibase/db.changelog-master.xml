@@ -3,9 +3,256 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet id="1.0.0" author="yuru.yy">
-        <createTable tableName="">
-            <column></column>
+    <changeSet id="1.0.0" author="yury.yy">
+        <createTable tableName="users">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="username" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="first_name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="last_name" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created" type="TIMESTAMP" defaultValue="NOW()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="updated" type="TIMESTAMP" defaultValue="NOW()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="status" type="VARCHAR(25)" defaultValue="ACTIVE">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.1" author="yury.yy">
+        <createTable tableName="roles">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(100)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="created" type="TIMESTAMP" defaultValue="NOW()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="updated" type="TIMESTAMP" defaultValue="NOW()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="status" type="VARCHAR(25)" defaultValue="ACTIVE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.2" author="yury.yy">
+        <createTable tableName="user_roles">
+            <column name="user_id" type="BIGINT">
+            </column>
+
+            <column name="role_id" type="BIGINT">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.3" author="yury.yy">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="user_roles"
+                                 constraintName="fk_user_roles_user"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
+
+    <changeSet id="1.0.4" author="yury.yy">
+        <addForeignKeyConstraint baseColumnNames="role_id"
+                                 baseTableName="user_roles"
+                                 constraintName="fk_user_roles_roles"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="roles"/>
+    </changeSet>
+
+    <changeSet id="1.0.5" author="yury.yy">
+        <insert tableName="roles">
+            <column name="name" value="ROLE_USER"/>
+        </insert>
+
+        <insert tableName="roles">
+            <column name="name" value="ROLE_ADMIN"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="1.0.6" author="yury.yy">
+        <createTable tableName="passports">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="identification_number" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="passport_number" type="varchar(20)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="issue_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="expire_date" type="timestamp">
+            </column>
+
+            <column name="authority" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="person_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.7" author="yury.yy">
+        <createTable tableName="reg_address">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="index" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="country" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="city" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="street" type="varchar(255)">
+            </column>
+
+            <column name="building" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="extension" type="varchar(10)">
+            </column>
+
+            <column name="office" type="varchar(10)">
+            </column>
+
+            <column name="begin_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="expire_date" type="timestamp">
+            </column>
+
+            <column name="person_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.8" author="yury.yy">
+        <createTable tableName="persons">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="first_name" type="varchar(40)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="last_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="patronymic" type="varchar(40)">
+            </column>
+
+            <column name="birth_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.9" author="yury.yy">
+        <addForeignKeyConstraint baseColumnNames="person_id"
+                                 baseTableName="passports"
+                                 constraintName="fk_passports_persons"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="persons"/>
+    </changeSet>
+
+    <changeSet id="1.0.10" author="yury.yy">
+        <addForeignKeyConstraint baseColumnNames="person_id"
+                                 baseTableName="reg_address"
+                                 constraintName="fk_reg_address_persons"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="persons"/>
+    </changeSet>
+
+    <changeSet id="1.0.11" author="yury.yy">
+        <createTable tableName="logs_warns_errors">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="log_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="message" type="varchar(1500)">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="1.0.12" author="yury.yy">
+        <createTable tableName="logs_info">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="log_time" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="message" type="varchar(1500)">
+            </column>
         </createTable>
     </changeSet>
 
