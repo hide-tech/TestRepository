@@ -33,4 +33,6 @@ public class RegAddress {
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.REFRESH})
     @JoinColumn(name = "person_id")
     private Person person;
+    @Column(name = "deleted")
+    private boolean deleted;
 }

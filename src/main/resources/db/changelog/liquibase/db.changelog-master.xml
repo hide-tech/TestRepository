@@ -41,6 +41,10 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="deleted" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
+
         </createTable>
     </changeSet>
 
@@ -63,6 +67,10 @@
             </column>
 
             <column name="status" type="VARCHAR(25)" defaultValue="ACTIVE">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="deleted" type="boolean" defaultValue="false">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -136,6 +144,10 @@
             <column name="person_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="deleted" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 
@@ -180,6 +192,10 @@
             <column name="person_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="deleted" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 
@@ -201,6 +217,10 @@
             </column>
 
             <column name="birth_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="deleted" type="boolean" defaultValue="false">
                 <constraints nullable="false"/>
             </column>
         </createTable>
@@ -238,6 +258,10 @@
 
             <column name="message" type="varchar(1500)">
             </column>
+
+            <column name="deleted" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 
@@ -252,6 +276,10 @@
             </column>
 
             <column name="message" type="varchar(1500)">
+            </column>
+
+            <column name="deleted" type="boolean" defaultValue="false">
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>

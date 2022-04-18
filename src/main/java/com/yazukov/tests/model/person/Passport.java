@@ -25,4 +25,6 @@ public class Passport {
     @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
     private Person person;
+    @Column(name = "deleted")
+    private boolean deleted;
 }

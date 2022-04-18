@@ -30,4 +30,6 @@ public class Person {
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH}, mappedBy = "person")
     @Fetch(value = FetchMode.SUBSELECT)
     private List<RegAddress> addresses;
+    @Column(name = "deleted")
+    private boolean deleted;
 }

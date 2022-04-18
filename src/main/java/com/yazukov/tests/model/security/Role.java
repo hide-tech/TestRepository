@@ -21,4 +21,6 @@ public class Role {
     @Column(name = "status")
     @Enumerated(value = EnumType.STRING)
     private Status status;
+    @Column(name = "deleted")
+    private boolean deleted;
 }

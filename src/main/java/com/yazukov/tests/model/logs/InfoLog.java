@@ -16,4 +16,6 @@ public class InfoLog {
     private LocalDateTime logTime;
     @Column(name = "message")
     private String message;
+    @Column(name = "deleted")
+    private boolean deleted;
 }
