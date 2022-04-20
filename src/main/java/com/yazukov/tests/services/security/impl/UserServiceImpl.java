@@ -1,5 +1,6 @@
 package com.yazukov.tests.services.security.impl;
 
+import com.yazukov.tests.model.security.User;
 import com.yazukov.tests.repositories.security.UserRepository;
 import com.yazukov.tests.services.security.RoleService;
 import com.yazukov.tests.services.security.UserService;
@@ -12,4 +13,9 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     @Autowired
     private RoleService roleService;
+
+    @Override
+    public User getUserByUsername(String username) {
+        return userRepository.getUserByUsername(username);
+    }
 }

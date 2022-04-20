@@ -17,7 +17,7 @@ public class RegAddressServiceImpl implements RegAddressService {
 
     @Override
     public List<RegAddressDto> getAllRegAddressesByPerson(Long personId) {
-        List<RegAddress> addresses = regAddressRepository.findAllPersonId(personId);
+        List<RegAddress> addresses = regAddressRepository.findMyPersonId(personId);
         return mapListRegAddressToDto(addresses);
     }
 

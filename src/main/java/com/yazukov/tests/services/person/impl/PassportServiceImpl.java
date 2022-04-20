@@ -17,7 +17,7 @@ public class PassportServiceImpl implements PassportService {
 
     @Override
     public List<PassportDto> getAllPassportByPerson(Long personId) {
-        List<Passport> passports = passportRepository.findAllByPersonId(personId);
+        List<Passport> passports = passportRepository.findMyByPersonId(personId);
         return mapListPassportToDto(passports);
     }
 
