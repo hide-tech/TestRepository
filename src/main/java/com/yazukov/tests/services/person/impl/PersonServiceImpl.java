@@ -31,6 +31,14 @@ public class PersonServiceImpl implements PersonService {
         return mapListPersonsToDto(result);
     }
 
+    @Override
+    public List<PersonDto> getAllByOneQuery() {
+        List<Person> persons = personRepository.getAllPersonsWithData();
+        List<Person> result = persons.stream()
+                .filter(person -> person.isDeleted()==false).collect(Collectors.toList());
+        return mapListPersonsToDto(result);
+    }
+
     private List<PersonDto> mapListPersonsToDto(List<Person> persons) {
         return persons.stream().map(person -> {
             return mapPersonToDto(person);

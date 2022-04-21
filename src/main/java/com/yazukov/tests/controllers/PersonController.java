@@ -19,4 +19,7 @@ public class PersonController {
     public List<PersonDto> showAllPersons(){
         return personService.getAllPersons();
     }
+
+    @GetMapping("/query")
+    public List<PersonDto> showAllByOneQuery() {return personService.getAllByOneQuery(); }
 }
