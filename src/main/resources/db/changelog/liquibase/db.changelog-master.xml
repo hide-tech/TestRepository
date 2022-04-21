@@ -118,7 +118,7 @@
 
     <changeSet id="1.0.6" author="yury.yy">
         <createTable tableName="passports">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
@@ -153,7 +153,7 @@
 
     <changeSet id="1.0.7" author="yury.yy">
         <createTable tableName="reg_address">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
 
@@ -201,7 +201,7 @@
 
     <changeSet id="1.0.8" author="yury.yy">
         <createTable tableName="persons">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
 
@@ -248,7 +248,7 @@
 
     <changeSet id="1.0.11" author="yury.yy">
         <createTable tableName="logs_warns_errors">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
 
@@ -267,7 +267,7 @@
 
     <changeSet id="1.0.12" author="yury.yy">
         <createTable tableName="logs_info">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
 

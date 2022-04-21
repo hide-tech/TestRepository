@@ -1,10 +1,14 @@
 package com.yazukov.tests.dto.person;
 
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class RegAddressDto {
     private String index;
     private String country;

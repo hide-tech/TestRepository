@@ -1,6 +1,7 @@
 package com.yazukov.tests.services.person.impl;
 
 import com.yazukov.tests.dto.person.RegAddressDto;
+import com.yazukov.tests.model.person.Person;
 import com.yazukov.tests.model.person.RegAddress;
 import com.yazukov.tests.repositories.person.RegAddressRepository;
 import com.yazukov.tests.services.person.RegAddressService;
@@ -21,13 +22,13 @@ public class RegAddressServiceImpl implements RegAddressService {
         return mapListRegAddressToDto(addresses);
     }
 
-    private List<RegAddressDto> mapListRegAddressToDto(List<RegAddress> addresses) {
+    public List<RegAddressDto> mapListRegAddressToDto(List<RegAddress> addresses) {
         return addresses.stream().map(address -> {
             return mapRegAddressToDto(address);
         }).collect(Collectors.toList());
     }
 
-    private RegAddressDto mapRegAddressToDto(RegAddress address) {
+    public RegAddressDto mapRegAddressToDto(RegAddress address) {
         RegAddressDto regAddressDto = new RegAddressDto();
 
         regAddressDto.setIndex(address.getIndex());
@@ -41,5 +42,39 @@ public class RegAddressServiceImpl implements RegAddressService {
         regAddressDto.setExpireDate(address.getExpireDate());
 
         return regAddressDto;
+    }
+
+    @Override
+    public List<RegAddress> saveAndChainAddressesToPerson(List<RegAddressDto> regAddressDtoList, Person person) {
+        List<RegAddress> addresses = regAddressDtoList.stream().map(addressDto ->{
+            return mapDtoToRegAddress(addressDto, person);
+        }).collect(Collectors.toList());
+        return addresses.stream().peek(address -> regAddressRepository.save(address)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteRegAddresses(List<RegAddress> addresses) {
+        addresses.stream().forEach(address -> {
+            address.setDeleted(true);
+            regAddressRepository.save(address);
+        });
+    }
+
+    private RegAddress mapDtoToRegAddress(RegAddressDto addressDto, Person person) {
+        RegAddress address = new RegAddress();
+
+        address.setIndex(addressDto.getIndex());
+        address.setCountry(addressDto.getCountry());
+        address.setCity(addressDto.getCity());
+        address.setStreet(addressDto.getStreet());
+        address.setBuilding(addressDto.getBuilding());
+        address.setExtension(addressDto.getExtension());
+        address.setOffice(addressDto.getOffice());
+        address.setBeginDate(addressDto.getBeginDate());
+        address.setExpireDate(addressDto.getExpireDate());
+        address.setDeleted(false);
+        address.setPerson(person);
+
+        return address;
     }
 }

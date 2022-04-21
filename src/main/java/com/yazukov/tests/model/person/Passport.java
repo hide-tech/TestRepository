@@ -1,13 +1,17 @@
 package com.yazukov.tests.model.person;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "passports")
-@Data
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Passport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

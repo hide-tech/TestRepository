@@ -1,11 +1,15 @@
 package com.yazukov.tests.dto.person;
 
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Data
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class PersonDto {
     private String firstName;
     private String lastName;

@@ -1,13 +1,17 @@
 package com.yazukov.tests.model.person;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "reg_address")
-@Data
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class RegAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
