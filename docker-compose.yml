@@ -12,8 +12,8 @@ services:
     image: postgres:12
     restart: always
     ports:
-      - 5433:5433
+      - 5432:5432
     environment:
-      POSTGRESS_PASSWORD: postgres2
-      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres2
+      POSTGRES_USER: postuser
       POSTGRES_DB: test_db
