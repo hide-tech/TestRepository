@@ -1,6 +1,7 @@
 package com.yazukov.tests.model.person;
 
 import lombok.*;
+import lombok.experimental.Accessors;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -16,6 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Accessors(chain = true)
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
